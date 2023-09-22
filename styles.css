@@ -1,3 +1,13 @@
+:root {
+  --primary-color: #128c7e;
+  --secondary-color: #25d366;
+  --dark-bg: #075e54;
+  --msg-bg1: #dcf8c6;
+  --msg-bg2: #ece5dd;
+  --text-light: white;
+  --text-dark: black;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,13 +16,10 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #014dbe;
-  margin: 0;
-  padding: 0;
 }
 
 .top-action-bar {
-  background-color: darkcyan;
+  background-color: var(--primary-color);
   height: 7vh;
   display: flex;
   justify-content: space-between;
@@ -27,7 +34,7 @@ body {
 #backBtn,
 #menuBtn {
   border: none;
-  color: white;
+  color: var(--text-light);
   background-color: transparent;
 }
 
@@ -39,12 +46,10 @@ img {
   border-radius: 50%;
   height: 100%;
   margin: 0 0.5rem;
-  /* padding: 0.3rem; */
 }
 
 h4 {
-  /* background-color: green; */
-  color: white;
+  color: var(--text-light);
   font-weight: lighter;
 }
 
@@ -59,14 +64,8 @@ h4 {
   justify-content: space-between;
 }
 
-.message-container {
-  overflow-y: scroll;
-}
-
 .bottom-action-bar {
-  /* max-height: 5rem; */
-  height: 7vh;
-  padding: 0;
+  height: 3.5rem;
   display: flex;
   padding: 0.5rem;
 }
@@ -76,7 +75,6 @@ h4 {
   flex-shrink: 1;
   height: 100%;
   border-radius: 5px;
-  border: 1px solid #ccc;
   resize: none;
   margin-right: 0.5rem;
 }
@@ -85,42 +83,87 @@ h4 {
   flex-shrink: 0;
   height: 100%;
   aspect-ratio: 1/1;
-  background-color: green;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-light);
   border: none;
-  /* width: auto; */
-  /* box-shadow: 0 2px 4px darkslategrey; */
   border-radius: 50%;
 }
 
 #sendBtn:hover {
-  background-color: darkgreen;
+  background-color: var(--dark-bg);
 }
 
 button:hover {
   cursor: pointer;
 }
 
-.message {
-  padding: 8px 12px;
-  border-radius: 15px;
-  margin: 5px 0;
+.message-container {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Taken from https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
+/* Hide scrollbar for Chrome, Safari and Opera */
+.message-container::-webkit-scrollbar {
+  display: none;
+}
+
+.user-message,
+.computer-message {
+  padding: 0.5rem 1rem;
+  margin: 0.75rem 1.5rem 0 1.5rem;
+  max-width: 80%;
+  width: fit-content;
+  /* word-wrap: break-word; */
+  border-radius: 0.3rem;
   position: relative;
 }
 
-.message .timestamp {
-  font-size: 0.7em;
+.user-message + .user-message,
+.computer-message + .computer-message {
+  margin-top: 0.3rem;
+}
+
+.user-message + .user-message:after,
+.computer-message + .computer-message:after {
+  display: none;
+}
+
+.user-message::after,
+.computer-message::after {
+  content: "";
   position: absolute;
-  bottom: 2px;
-  right: 5px;
+  border-style: solid;
+}
+
+/* Triangle generated using http://apps.eky.hk/css-triangle-generator/*/
+.user-message::after {
+  border-width: 1.2rem 1.2rem 0 0;
+  border-color: var(--msg-bg1) transparent transparent transparent;
+  right: -0.9rem;
+  top: 0;
+}
+
+.computer-message::after {
+  border-width: 0 1.2rem 1.2rem 0;
+  border-color: transparent var(--msg-bg2) transparent transparent;
+  left: -0.9rem;
+  top: 0;
+}
+
+.timestamp {
+  font-size: 0.7em;
+  text-align: right;
 }
 
 .user-message {
-  background-color: #dcf8c6;
+  background-color: var(--msg-bg1);
   align-self: flex-end;
-  margin-right: 5px;
 }
 
 .computer-message {
-  background-color: #ececec;
+  background-color: var(--msg-bg2);
 }
