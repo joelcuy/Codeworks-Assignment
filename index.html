@@ -27,6 +27,7 @@
         <button type="button" id="menuBtn">
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </button>
+        <div id="dropdown">Clear Chat</div>
       </div>
       <div class="message-container" id="messageContainer"></div>
       <div class="bottom-action-bar">
@@ -36,7 +37,12 @@
         </button>
       </div>
     </div>
-
+    <audio id="messageSound" preload="auto">
+      <source
+        src="assets/audio/pop-bottle-opening-mechanical-wave.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="script.js"></script>
   </body>

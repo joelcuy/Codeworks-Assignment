@@ -38,7 +38,7 @@ button:hover {
   padding: 0.5rem 0;
 }
 
-.top-action-bar > div {
+.top-action-bar > div:nth-child(1) {
   display: flex;
   align-items: center;
 }
@@ -61,11 +61,25 @@ button:hover {
   margin-left: 1rem;
 }
 
+#dropdown {
+  position: absolute;
+  display: none;
+  background-color: var(--msg-bg2);
+  border-radius: 0.4rem;
+  border: var(--mask-dark) 1px solid;
+  padding: 1rem;
+  top: 3rem;
+  right: 1rem;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 2px 2px 2px var(--mask-dark);
+}
+
 /* CHAT CONTAINER */
 .chat-container {
   height: 100vh;
   background-image: linear-gradient(var(--mask-dark), var(--mask-dark)),
-    url("background-light.png");
+    url("/assets/img/background-light.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -88,10 +102,29 @@ button:hover {
 .message-container::-webkit-scrollbar {
   display: none;
 }
+/* 
+@keyframes enlargeBubble {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+} */
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 /* Style concept for chat bubbles from https://codepen.io/AllThingsSmitty/pen/jommGQ */
 .user-message,
 .computer-message {
+  animation: appear 0.3s;
   padding: 0.5rem 1rem;
   margin: 0.75rem 1.5rem 0 1.5rem;
   max-width: 80%;
