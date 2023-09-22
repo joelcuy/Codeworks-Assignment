@@ -24,9 +24,16 @@ let computerReplies = [
   "Here's a thought: If you could fold a piece of paper 42 times, it would reach the moon. Too bad most paper can only be folded about 7 or 8 times!",
 ];
 
+// Adjust the height of the textarea
+$textArea.on("input", () => {
+  $textArea.css("height", "fit-content"); // Reset height to auto in case of shrinking
+  $textArea.css("height", $textArea.prop("scrollHeight") + "px");
+  $textArea.scrollTop($textArea.prop("scrollHeight"));
+});
+
 function displayWelcomeMessage() {
   computerWelcome.forEach((str) => {
-    console.log(str);
+    // console.log(str);
     appendMessageElement(str, "computer");
   });
 }
@@ -36,8 +43,15 @@ function getRandomComputerReply() {
   return computerReplies[randomIndex];
 }
 
+// Returns current time string in HH:MM AM format
+function getCurrentTime() {
+  const now = new Date().toLocaleTimeString();
+  return now.slice(0, 5) + now.slice(8);
+}
+
 function appendMessageElement(message, type) {
-  const timestamp = new Date().toLocaleTimeString();
+  // Regex generated via https://regex-generator.olafneumann.org/?sampleText=4%3A16%3A38%20AM&flags=Pi
+  const timestamp = getCurrentTime();
   const $message = $(`
     <div class="${type}-message">
       <span>
@@ -59,6 +73,7 @@ $sendBtn.on("click", () => {
   const userMessage = $textArea.val().trim();
   if (userMessage) {
     appendMessageElement(userMessage, "user");
+    $textArea.val("");
 
     // Computer responds with random reply
     setTimeout(() => {

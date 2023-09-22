@@ -1,29 +1,40 @@
+/* GENERAL STYLES */
 :root {
   --primary-color: #128c7e;
   --secondary-color: #25d366;
   --dark-bg: #075e54;
   --msg-bg1: #dcf8c6;
-  --msg-bg2: #ece5dd;
+  --msg-bg2: #ffffff;
   --text-light: white;
+  --text-grey: grey;
   --text-dark: black;
+  --mask-dark: rgba(0, 0, 0, 0.15);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
   font-family: Arial, sans-serif;
 }
 
+button {
+  border: none;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* TOP ACTION BAR */
 .top-action-bar {
   background-color: var(--primary-color);
   height: 7vh;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0;
 }
 
 .top-action-bar > div {
@@ -33,68 +44,33 @@ body {
 
 #backBtn,
 #menuBtn {
-  border: none;
-  color: var(--text-light);
   background-color: transparent;
+  width: 3rem;
+  height: 100%;
 }
 
-i {
-  font-size: 1.1rem;
-}
-
-img {
+.user-image {
   border-radius: 50%;
   height: 100%;
-  margin: 0 0.5rem;
 }
 
-h4 {
+.user-name {
   color: var(--text-light);
   font-weight: lighter;
+  margin-left: 1rem;
 }
 
+/* CHAT CONTAINER (INCLUDES BOTTOM ACTION BAR) */
 .chat-container {
   height: 93vh;
-  background-image: url("background.jpg");
+  background-image: linear-gradient(var(--mask-dark), var(--mask-dark)),
+    url("background-light.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.bottom-action-bar {
-  height: 3.5rem;
-  display: flex;
-  padding: 0.5rem;
-}
-
-#textArea {
-  flex-grow: 1;
-  flex-shrink: 1;
-  height: 100%;
-  border-radius: 5px;
-  resize: none;
-  margin-right: 0.5rem;
-}
-
-#sendBtn {
-  flex-shrink: 0;
-  height: 100%;
-  aspect-ratio: 1/1;
-  background-color: var(--primary-color);
-  color: var(--text-light);
-  border: none;
-  border-radius: 50%;
-}
-
-#sendBtn:hover {
-  background-color: var(--dark-bg);
-}
-
-button:hover {
-  cursor: pointer;
 }
 
 .message-container {
@@ -111,6 +87,7 @@ button:hover {
   display: none;
 }
 
+/* Style concept for chat bubbles from https://codepen.io/AllThingsSmitty/pen/jommGQ */
 .user-message,
 .computer-message {
   padding: 0.5rem 1rem;
@@ -122,16 +99,19 @@ button:hover {
   position: relative;
 }
 
+/* Make sure that the margins between messages of same sender is less than messages of different senders */
 .user-message + .user-message,
 .computer-message + .computer-message {
   margin-top: 0.3rem;
 }
 
+/* Make sure that the tail of bubble is only for the first message */
 .user-message + .user-message:after,
 .computer-message + .computer-message:after {
   display: none;
 }
 
+/* Uses Pseudo elements to create the tail of chat bubble */
 .user-message::after,
 .computer-message::after {
   content: "";
@@ -155,6 +135,8 @@ button:hover {
 }
 
 .timestamp {
+  margin-top: 0.2rem;
+  color: var(--text-grey);
   font-size: 0.7em;
   text-align: right;
 }
@@ -166,4 +148,52 @@ button:hover {
 
 .computer-message {
   background-color: var(--msg-bg2);
+}
+
+/* BOTTOM ACTION BAR */
+.bottom-action-bar {
+  /* height: 3.5rem; */
+  display: flex;
+  padding: 0.5rem;
+}
+
+#textArea {
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-height: 5rem;
+  height: fit-content;
+  font-size: 1rem;
+  overflow-y: auto;
+  border-radius: 5px;
+  border: none;
+  resize: none;
+  margin-right: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  box-shadow: 2px 2px 4px var(--mask-dark);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+#textArea:focus {
+  outline: none;
+}
+
+#textArea::-webkit-scrollbar {
+  display: none;
+}
+
+#sendBtn {
+  flex-shrink: 0;
+  box-shadow: 2px 2px 4px var(--mask-dark);
+  height: 2.2rem;
+  aspect-ratio: 1/1;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: 50%;
+  align-self: center;
+}
+
+#sendBtn:hover {
+  background-color: var(--dark-bg);
 }
