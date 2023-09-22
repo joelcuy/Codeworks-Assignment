@@ -73,7 +73,8 @@ $sendBtn.on("click", () => {
   const userMessage = $textArea.val().trim();
   if (userMessage) {
     appendMessageElement(userMessage, "user");
-    $textArea.val("");
+    $textArea.val(""); //Resets value of textarea
+    $textArea.focus(); //Puts cursor to focus text area again
 
     // Computer responds with random reply
     setTimeout(() => {

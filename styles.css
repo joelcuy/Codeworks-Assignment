@@ -31,7 +31,7 @@ button:hover {
 /* TOP ACTION BAR */
 .top-action-bar {
   background-color: var(--primary-color);
-  height: 7vh;
+  height: 4rem;
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
@@ -60,9 +60,9 @@ button:hover {
   margin-left: 1rem;
 }
 
-/* CHAT CONTAINER (INCLUDES BOTTOM ACTION BAR) */
+/* CHAT CONTAINER */
 .chat-container {
-  height: 93vh;
+  height: 100vh;
   background-image: linear-gradient(var(--mask-dark), var(--mask-dark)),
     url("background-light.png");
   background-position: center center;
@@ -70,12 +70,13 @@ button:hover {
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .message-container {
   overflow-y: scroll;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
