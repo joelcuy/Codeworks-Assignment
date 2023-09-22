@@ -31,6 +31,7 @@ button:hover {
 /* TOP ACTION BAR */
 .top-action-bar {
   background-color: var(--primary-color);
+  box-shadow: 2px 2px 4px var(--mask-dark);
   height: 4rem;
   display: flex;
   justify-content: space-between;
