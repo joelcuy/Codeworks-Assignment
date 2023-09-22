@@ -59,7 +59,6 @@ function getRandomComputerReply() {
  */
 function getCurrentTime() {
   const now = new Date().toLocaleString();
-  console.log(now);
   return now.slice(0, 9) + " " + now.slice(10, 15) + now.slice(19);
 }
 
@@ -68,7 +67,6 @@ function getCurrentTime() {
  * Ensure user interactions are handled before using this due to browser restrictions on autoplay.
  */
 function playMessageSound() {
-  console.log($messageSound);
   $messageSound[0].play();
 }
 
