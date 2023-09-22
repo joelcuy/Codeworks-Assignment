@@ -59,7 +59,7 @@ function getRandomComputerReply() {
  */
 function getCurrentTime() {
   const now = new Date().toLocaleString();
-  return now.slice(0, 9) + " " + now.slice(10, 15) + now.slice(19);
+  return now.slice(0, 9) + " " + now.slice(10, 16) + now.slice(20);
 }
 
 /**
